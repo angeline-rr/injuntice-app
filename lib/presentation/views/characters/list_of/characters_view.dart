@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:injustice_app/presentation/views/characters/list_of/widgets/characters_app_bar.dart';
-import 'package:injustice_app/presentation/views/characters/list_of/widgets/characters_body.dart';
-import 'package:injustice_app/presentation/views/characters/list_of/widgets/characters_floating_button.dart';
+import 'widgets/characters_app_bar.dart';
+import 'widgets/characters_body.dart';
+import 'widgets/characters_floating_button.dart';
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/theme/app_theme.dart';
 import '../../../../domain/models/account_entity.dart';

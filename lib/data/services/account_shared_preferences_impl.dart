@@ -1,12 +1,13 @@
 import 'dart:convert';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../core/failure/failure.dart';
 import '../../core/patterns/result.dart';
 import '../../core/typedefs/types_defs.dart';
-import 'account_local_storage_interface.dart';
 import '../../domain/models/account_entity.dart';
 import '../../domain/models/account_mapper.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'account_local_storage_interface.dart';
 
 final class AccountSharedPreferencesService implements IAccountLocalStorage {
   static const String _storageKey = 'account_data';

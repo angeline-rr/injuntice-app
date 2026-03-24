@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:injustice_app/helper_dev/fakes/character_factory.dart';
-import 'package:injustice_app/presentation/controllers/characters_view_model.dart';
+import '../../../../../helper_dev/fakes/character_factory.dart';
+import '../../../../controllers/characters_view_model.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
 class CharactersFab extends StatelessWidget {

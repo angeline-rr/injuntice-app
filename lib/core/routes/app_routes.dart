@@ -1,9 +1,10 @@
+import 'package:go_router/go_router.dart';
+
 import '../../domain/models/account_entity.dart';
 import '../../presentation/views/about_view.dart';
 import '../../presentation/views/account_create_view.dart';
 import '../../presentation/views/characters/list_of/characters_view.dart';
 import '../../presentation/views/home_view.dart';
-import 'package:go_router/go_router.dart';
 
 /// Route names for easier referencing
 class AppRouteNames {

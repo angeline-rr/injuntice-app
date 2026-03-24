@@ -6,7 +6,6 @@ import '../../domain/models/account_entity.dart';
 import '../controllers/account_viewmodel.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
-import '../../helper_dev/fakes/factories.dart';
 
 /// Drawer reutilizável para navegação entre páginas
 class AppDrawer extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:injustice_app/core/theme/app_theme.dart';
-import 'package:injustice_app/presentation/controllers/characters_state_viewmodel.dart';
+import '../../../../../core/theme/app_theme.dart';
+import '../../../../controllers/characters_state_viewmodel.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
 class CharactersAppBar extends StatelessWidget implements PreferredSizeWidget {

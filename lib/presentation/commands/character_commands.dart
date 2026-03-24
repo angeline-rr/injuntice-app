@@ -1,8 +1,8 @@
 import '../../core/failure/failure.dart';
 import '../../core/patterns/command.dart';
+import '../../core/patterns/result.dart';
 import '../../core/typedefs/types_defs.dart';
 import '../../domain/facades/character_facade_usecases_interface.dart';
-import '../../core/patterns/result.dart';
 import '../../domain/models/character_entity.dart';
 
 final class CreateCharacterCommand

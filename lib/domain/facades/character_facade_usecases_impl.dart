@@ -1,6 +1,6 @@
 import '../../core/typedefs/types_defs.dart';
-import 'character_facade_usecases_interface.dart';
 import '../usecases/character_usecases_interfaces.dart';
+import 'character_facade_usecases_interface.dart';
 
 /// implementacao do [ICharacterFacadeUseCases]
 /// para chamar os usecases relacionados a Character

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:injustice_app/core/theme/app_theme.dart';
-import 'package:injustice_app/domain/models/account_entity.dart';
-import 'package:injustice_app/domain/models/character_entity.dart';
-import 'package:injustice_app/domain/models/extensions/character_ui.dart';
-import 'package:injustice_app/presentation/controllers/characters_state_viewmodel.dart';
-import 'package:injustice_app/presentation/controllers/characters_view_model.dart';
-import 'package:injustice_app/presentation/widgets/account_summary_card.dart';
-import 'package:injustice_app/presentation/widgets/loading_indicator.dart';
-import 'package:injustice_app/presentation/widgets/star_rating.dart';
+import '../../../../../core/theme/app_theme.dart';
+import '../../../../../domain/models/account_entity.dart';
+import '../../../../../domain/models/character_entity.dart';
+import '../../../../../domain/models/extensions/character_ui.dart';
+import '../../../../controllers/characters_state_viewmodel.dart';
+import '../../../../controllers/characters_view_model.dart';
+import '../../../../widgets/account_summary_card.dart';
+import '../../../../widgets/empty_state.dart';
+import '../../../../widgets/loading_indicator.dart';
+import '../../../../widgets/star_rating.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
 class CharactersBody extends StatelessWidget {
@@ -52,7 +53,7 @@ class CharactersBody extends StatelessWidget {
             else if (characters.isEmpty)
               SliverFillRemaining(
                 hasScrollBody: false,
-                child: const EmptyState(),
+                child: EmptyState.noCharacters(),
               )
             else
               SliverPadding(
@@ -75,46 +76,46 @@ class CharactersBody extends StatelessWidget {
   }
 }
 
-class EmptyState extends StatelessWidget {
-  const EmptyState({super.key});
+// class EmptyState extends StatelessWidget {
+//   const EmptyState({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: AppSpacing.xxl,
-          vertical: AppSpacing.xxl,
-        ),
-        child: Column(
-          // mainAxisSize: MainAxisSize.max,
-          // mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Icon(
-              Icons.people_outline,
-              size: 72,
-              color: Theme.of(context).colorScheme.outline,
-            ),
-            const SizedBox(height: AppSpacing.md),
-            Text(
-              'Nenhum personagem encontrado',
-              textAlign: TextAlign.center,
-              style: context.textStyles.titleMedium?.semiBold,
-            ),
-            const SizedBox(height: AppSpacing.sm),
-            Text(
-              'Adicione seu primeiro personagem usando o botão +',
-              textAlign: TextAlign.center,
-              style: context.textStyles.bodyMedium?.withColor(
-                Theme.of(context).colorScheme.onSurfaceVariant,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Center(
+//       child: Padding(
+//         padding: const EdgeInsets.symmetric(
+//           horizontal: AppSpacing.xxl,
+//           vertical: AppSpacing.xxl,
+//         ),
+//         child: Column(
+//           // mainAxisSize: MainAxisSize.max,
+//           // mainAxisAlignment: MainAxisAlignment.start,
+//           children: [
+//             Icon(
+//               Icons.people_outline,
+//               size: 72,
+//               color: Theme.of(context).colorScheme.outline,
+//             ),
+//             const SizedBox(height: AppSpacing.md),
+//             Text(
+//               'Nenhum personagem encontrado',
+//               textAlign: TextAlign.center,
+//               style: context.textStyles.titleMedium?.semiBold,
+//             ),
+//             const SizedBox(height: AppSpacing.sm),
+//             Text(
+//               'Adicione seu primeiro personagem usando o botão +',
+//               textAlign: TextAlign.center,
+//               style: context.textStyles.bodyMedium?.withColor(
+//                 Theme.of(context).colorScheme.onSurfaceVariant,
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 /// Item da lista de personagens
 class CharacterListItem extends StatelessWidget {

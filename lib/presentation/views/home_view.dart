@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
+import 'package:signals_flutter/signals_flutter.dart';
+
 import '../../core/di/dependency_injection.dart';
 import '../../core/routes/app_routes.dart';
 import '../../core/theme/app_theme.dart';
 import '../controllers/account_viewmodel.dart';
 import '../widgets/app_drawer.dart';
-import 'package:intl/intl.dart';
-import 'package:signals_flutter/signals_flutter.dart';
 
 
 class HomeView extends StatefulWidget {
@@ -21,7 +22,8 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     _vmAccount = injector.get<AccountViewModel>();
-    _vmAccount.getAccountCommand();
+    // _vmAccount.getAccountCommand();
+    _vmAccount.commands.fetchAccount();
     super.initState();
   }
 
@@ -114,7 +116,8 @@ class _HomeViewState extends State<HomeView> {
     // final account = _viewModel.currentAccount.value!;
 
     return RefreshIndicator(
-      onRefresh: () async => await _vmAccount.getAccountCommand(),
+      onRefresh: () async => await _vmAccount.commands.fetchAccount(),
+      // onRefresh: () async => await _vmAccount.getAccountCommand(),
       child: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         padding: AppSpacing.paddingLg,
