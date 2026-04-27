@@ -31,8 +31,6 @@ class AccountViewModel {
   // --- Comandos expostos ---
   GetAccountCommand get getAccountCommand => commands.getAccountCommand;
   SaveAccountCommand get saveAccountCommand => commands.saveAccountCommand;
-  DeleteAccountCommand get deleteAccountCommand =>
-      commands.deleteAccountCommand;
-  UpdateAccountCommand get updateAccountCommand =>
-      commands.updateAccountCommand;
+  DeleteAccountCommand get deleteAccountCommand => commands.deleteAccountCommand;
+  UpdateAccountCommand get updateAccountCommand => commands.updateAccountCommand;
 }

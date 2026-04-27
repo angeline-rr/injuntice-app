@@ -45,7 +45,7 @@ class _CharactersViewState extends State<CharactersView> {
   }
 
   Future<void> _deleteCharacter(Character character) async {
-    // await _viewModel.deleteCharacter(character.id);
+    await _viewModel.deleteCharacterCommand.executeWith((id: character.id));
 
     if (mounted) {
       ScaffoldMessenger.of(

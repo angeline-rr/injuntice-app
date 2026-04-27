@@ -5,8 +5,7 @@ import '../../core/typedefs/types_defs.dart';
 import '../../domain/facades/account_facade_usecases_interface.dart';
 import '../../domain/models/account_entity.dart';
 
-final class SaveAccountCommand
-    extends ParameterizedCommand<void, Failure, AccountParams> {
+final class SaveAccountCommand extends ParameterizedCommand<void, Failure, AccountParams> {
   final IAccountFacadeUseCases _accountFacadeUseCases;
 
   SaveAccountCommand(this._accountFacadeUseCases);

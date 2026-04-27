@@ -14,9 +14,37 @@ final class CharacterSharedPreferencesService
   static const String _storageKey = 'characters';
 
   @override
-  Future<CharacterResult> deleteCharacter(String id) {
+  Future<CharacterResult> deleteCharacter(CharacterIdParams params) async {
     // TODO: implement deleteCharacter
-    throw UnimplementedError();
+    try {
+      final currentResult = await getAllCharacters();
+      //vendo se o personagem existe
+      return currentResult.fold(
+        onSuccess: (characters) async {
+          final characterToDelete = characters.cast<Character?>().firstWhere(
+            (c) => c?.id == params.id,
+            orElse: () => null,
+          );
+
+          if (characterToDelete == null) {
+            return Error(
+              ApiLocalFailure('Personagem não encontrado para deleção.'),
+            );
+          }
+
+          //deleta e salva
+          final updatedCharacters = characters
+              .where((c) => c.id != params.id)
+              .toList();
+          await _saveCharacters(updatedCharacters);
+
+          return Success(characterToDelete);
+        },
+        onFailure: (failure) async => Error(failure),
+      );
+    } catch (e) {
+      return Error(ApiLocalFailure('Erro ao deletar: $e'));
+    }
   }
 
   @override
@@ -53,10 +81,19 @@ final class CharacterSharedPreferencesService
   Future<CharacterResult> saveCharacter(Character character) async {
     try {
       final currentResult = await getAllCharacters();
-
       return await currentResult.fold(
         onSuccess: (characters) async {
-          final updatedCharacters = [...characters, character];
+          print('--- LOG DE SALVAMENTO ---');
+          print('Total antes: ${characters.length}');
+
+          final updatedCharacters = [
+            ...characters.where((c) => c.id != character.id),
+            character,
+          ];
+
+          print('Total depois: ${updatedCharacters.length}');
+          print('ID sendo salvo: ${character.id}');
+          
           await _saveCharacters(updatedCharacters);
           return Success(character);
         },
@@ -69,7 +106,6 @@ final class CharacterSharedPreferencesService
           return Error(ApiLocalFailure());
         },
       );
-      
     } catch (e) {
       return Error(
         ApiLocalFailure('Shared Preferences - Erro ao salvar personagem: $e'),

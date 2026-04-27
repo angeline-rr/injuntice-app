@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:injustice_app/presentation/views/characters/form/character_form_view.dart';
 import '../../../../../core/theme/app_theme.dart';
 import '../../../../../domain/models/account_entity.dart';
 import '../../../../../domain/models/character_entity.dart';
@@ -63,8 +64,13 @@ class CharactersBody extends StatelessWidget {
                     final character = characters[index];
                     return CharacterListItem(
                       character: character,
-                      onDelete: () {},
+                      onDelete: () {
+                        viewModel.deleteCharacterCommand.executeWith((
+                          id: character.id,
+                        ));
+                      },
                       onTap: () {},
+                      viewModel: viewModel,
                     );
                   }, childCount: characters.length),
                 ),
@@ -116,18 +122,19 @@ class CharactersBody extends StatelessWidget {
 //     );
 //   }
 // }
-
 /// Item da lista de personagens
 class CharacterListItem extends StatelessWidget {
   final Character character;
   final VoidCallback onDelete;
   final VoidCallback onTap;
+  final CharactersViewModel viewModel;
 
   const CharacterListItem({
     super.key,
     required this.character,
     required this.onDelete,
     required this.onTap,
+    required this.viewModel,
   });
 
   @override
@@ -188,7 +195,17 @@ class CharacterListItem extends StatelessWidget {
         color: Theme.of(context).colorScheme.secondary.withValues(alpha: 0.9),
         margin: const EdgeInsets.only(bottom: AppSpacing.md),
         child: InkWell(
-          onTap: onTap,
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => CharacterFormView(
+                  viewModel: viewModel,
+                  characterToEdit:
+                      character, // Passa o personagem atual do card
+                ),
+              ),
+            );
+          },
           borderRadius: BorderRadius.circular(AppRadius.md),
           child: Padding(
             padding: AppSpacing.paddingMd,
@@ -214,6 +231,7 @@ class CharacterListItem extends StatelessWidget {
                           Expanded(
                             child: Text(
                               character.name,
+                              // 'oiii',
                               style: context.textStyles.titleMedium?.semiBold,
                               overflow: TextOverflow.ellipsis,
                             ),

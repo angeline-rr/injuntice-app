@@ -9,16 +9,20 @@ class CharactersCommandsViewModel {
   final CharactersStateViewmodel state;
   final GetAllCharactersCommand _getAccountCommand;
   final CreateCharacterCommand _createCharacterCommand;
+  final DeleteCharacterCommand _deleteCharacterCommand;
 
   CharactersCommandsViewModel({
     required this.state,
     required GetAllCharactersCommand getAccountCommand,
     required CreateCharacterCommand createCharacterCommand,
+    required DeleteCharacterCommand deleteCharacterCommand,
   }) : _getAccountCommand = getAccountCommand,
-       _createCharacterCommand = createCharacterCommand {
+       _createCharacterCommand = createCharacterCommand,
+       _deleteCharacterCommand = deleteCharacterCommand {
     // Observers para cada comando
     _observeGetAllCharacters();
     _observeCreateCharacter();
+    _observeDeleteCharacter();
   }
 
   // ========================================================
@@ -26,6 +30,7 @@ class CharactersCommandsViewModel {
   // ========================================================
   GetAllCharactersCommand get getAllCharactersCommand => _getAccountCommand;
   CreateCharacterCommand get createCharacterCommand => _createCharacterCommand;
+  DeleteCharacterCommand get deleteCharacterCommand => _deleteCharacterCommand;
 
   // ========================================================
   //   MÉTODO GENÉRICO DE OBSERVAÇÃO DE COMANDOS
@@ -75,17 +80,42 @@ class CharactersCommandsViewModel {
           state.setMessage(err.msg), // registra o erro no estado
     );
   }
+
   /// Criar um novo personagem
-  void _observeCreateCharacter() {  
+  void _observeCreateCharacter() {
     _observeCommand<Character>(
       _createCharacterCommand,
       onSuccess: (newCharacter) {
         final currentList = state.state.value;
-        final newlist = [...currentList, newCharacter]; // Adiciona o novo personagem à lista
-        state.state.value = newlist; 
+        final newlist = [
+          ...currentList.where((c) => c.id != newCharacter.id),
+          newCharacter,
+        ]; // att o sinal
+        state.state.value = newlist;
       },
       onFailure: (err) =>
           state.setMessage(err.msg), // registra o erro no estado
+    );
+  }
+
+  // deletando
+  void _observeDeleteCharacter() {
+    _observeCommand<Character>(
+      _deleteCharacterCommand,
+      onSuccess: (deletedCharacter) {
+        state.clearMessage();
+        
+        final currentList = state.state.value;
+        
+        state.state.value = currentList.where((c) => c.id != deletedCharacter.id).toList();
+        // currentList.removeWhere((c) => c.id == deletedCharacter.id);
+        // state.state.value = currentList;
+        
+        // Opcional: Notificar um evento de sucesso
+        // state.successEvent.value = CharacterSuccessEvent.deleted;
+        // talvez fazer depois, ele nao tem esse Enum ainda
+      },
+      onFailure: (err) => state.setMessage(err.msg),
     );
   }
 

@@ -54,6 +54,6 @@ final class DeleteCharacterUseCaseImpl implements IDeleteCharacterUseCase {
 
   @override
   Future<CharacterResult> call(CharacterIdParams params) {
-    return _repository.deleteCharacter(params.id);
+    return _repository.deleteCharacter(params);
   }
 }

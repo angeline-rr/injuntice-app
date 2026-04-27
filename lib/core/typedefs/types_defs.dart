@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../failure/failure.dart';
 import '../../domain/models/account_entity.dart';
 import '../../domain/models/character_entity.dart';
-
 import '../patterns/result.dart';
 
 // typedefs para tipo Result

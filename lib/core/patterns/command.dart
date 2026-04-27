@@ -31,9 +31,10 @@ abstract base class Command<Success, Error>
     if (_running.value) return _result.value!; // já está rodando
     _running.value = true; // indica que está rodando
     _result.value = null; // limpa resultado anterior
-    _result.value = await execute(); // executa a ação
-    _running.value = false; // indica que terminou
-    return _result.value!;
+    final response = await execute(); // 1. Guarda numa variável
+    _result.value = response; // 2. Avisa a UI (Sinal)
+    _running.value = false; // 3. Para o loading
+    return response;
   }
 
   void clear() {
@@ -74,8 +75,8 @@ final class CompositeCommand<TOk, TError> extends Command<List<TOk>, TError> {
     final results = <TOk>[];
 
     for (final command in _commands) {
-      final result =
-          await command.call(); // usa o call() para registrar estados
+      final result = await command
+          .call(); // usa o call() para registrar estados
 
       if (result.isFailure) {
         return Error(result.failureValueOrNull as TError);
