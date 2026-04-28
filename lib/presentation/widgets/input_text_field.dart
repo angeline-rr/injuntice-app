@@ -50,7 +50,10 @@ class InputTextField extends StatelessWidget {
       textInputAction: textInputAction,
       inputFormatters: inputFormatters,
       onFieldSubmitted: onFieldSubmitted,
-
+      // cursorColor: Colors.redAccent,
+      // cursorWidth: 3.0,
+      // showCursor: true,
+      // nao sei porque nao funcionou aqui o cursor
       style: TextStyle(color: colorScheme.primary),
 
       decoration: InputDecoration(
@@ -64,7 +67,6 @@ class InputTextField extends StatelessWidget {
           // color: colorScheme.secondary,
           fontWeight: FontWeight.bold,
           backgroundColor: colorScheme.onSecondary,
-          // backgroundColor: colorScheme.onSecondary,
         ),
 
         prefixIcon: prefixIcon != null
@@ -91,8 +93,8 @@ class InputTextField extends StatelessWidget {
           borderSide: BorderSide(color: colorScheme.error),
         ),
         errorStyle: TextStyle(
-          color: colorScheme.tertiary, 
-          // color: Colors.white, 
+          color: colorScheme.tertiary,
+          // color: Colors.white,
           fontWeight: FontWeight.bold,
         ),
 

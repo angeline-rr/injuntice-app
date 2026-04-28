@@ -15,7 +15,6 @@ final class CharacterSharedPreferencesService
 
   @override
   Future<CharacterResult> deleteCharacter(CharacterIdParams params) async {
-    // TODO: implement deleteCharacter
     try {
       final currentResult = await getAllCharacters();
       //vendo se o personagem existe
@@ -83,17 +82,12 @@ final class CharacterSharedPreferencesService
       final currentResult = await getAllCharacters();
       return await currentResult.fold(
         onSuccess: (characters) async {
-          print('--- LOG DE SALVAMENTO ---');
-          print('Total antes: ${characters.length}');
 
           final updatedCharacters = [
             ...characters.where((c) => c.id != character.id),
             character,
           ];
 
-          print('Total depois: ${updatedCharacters.length}');
-          print('ID sendo salvo: ${character.id}');
-          
           await _saveCharacters(updatedCharacters);
           return Success(character);
         },

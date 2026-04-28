@@ -92,7 +92,7 @@ class AccountCommandsViewmodel {
       _deleteAccountCommand,
       onSuccess: (_) {
         state.successEvent.value = AccountSuccessEvent.deleted;
-        state.setAccount(null); // Limpa a conta do estado
+        state.setAccount(null); 
         
       },
       onFailure: (err) {

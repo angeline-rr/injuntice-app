@@ -69,7 +69,6 @@ class CharactersBody extends StatelessWidget {
                           id: character.id,
                         ));
                       },
-                      onTap: () {},
                       viewModel: viewModel,
                     );
                   }, childCount: characters.length),
@@ -126,14 +125,12 @@ class CharactersBody extends StatelessWidget {
 class CharacterListItem extends StatelessWidget {
   final Character character;
   final VoidCallback onDelete;
-  final VoidCallback onTap;
   final CharactersViewModel viewModel;
 
   const CharacterListItem({
     super.key,
     required this.character,
     required this.onDelete,
-    required this.onTap,
     required this.viewModel,
   });
 
@@ -163,7 +160,14 @@ class CharacterListItem extends StatelessWidget {
       ),
       confirmDismiss: (direction) async {
         if (direction == DismissDirection.startToEnd) {
-          onTap();
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => CharacterFormView(
+                viewModel: viewModel,
+                characterToEdit: character, // personagem atual do card
+              ),
+            ),
+          );
           return false;
         } else {
           return await showDialog<bool>(
@@ -174,10 +178,12 @@ class CharacterListItem extends StatelessWidget {
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(context, false),
+                      style: TextButton.styleFrom(foregroundColor: Colors.blue),
                       child: const Text('Cancelar'),
                     ),
                     TextButton(
                       onPressed: () => Navigator.pop(context, true),
+                      style: TextButton.styleFrom(foregroundColor: Colors.red),
                       child: const Text('Excluir'),
                     ),
                   ],
@@ -195,17 +201,6 @@ class CharacterListItem extends StatelessWidget {
         color: Theme.of(context).colorScheme.secondary.withValues(alpha: 0.9),
         margin: const EdgeInsets.only(bottom: AppSpacing.md),
         child: InkWell(
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => CharacterFormView(
-                  viewModel: viewModel,
-                  characterToEdit:
-                      character, // Passa o personagem atual do card
-                ),
-              ),
-            );
-          },
           borderRadius: BorderRadius.circular(AppRadius.md),
           child: Padding(
             padding: AppSpacing.paddingMd,
