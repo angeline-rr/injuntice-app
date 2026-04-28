@@ -111,9 +111,6 @@ class CharactersCommandsViewModel {
         // currentList.removeWhere((c) => c.id == deletedCharacter.id);
         // state.state.value = currentList;
         
-        // Opcional: Notificar um evento de sucesso
-        // state.successEvent.value = CharacterSuccessEvent.deleted;
-        // talvez fazer depois, ele nao tem esse Enum ainda
       },
       onFailure: (err) => state.setMessage(err.msg),
     );

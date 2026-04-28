@@ -178,12 +178,11 @@ class _CharacterFormViewState extends State<CharacterFormView> {
                         labelText: 'Ataque (50-1000)',
                       ),
                       keyboardType: TextInputType.number,
-                      // Quando o usuário terminar de digitar:
                       onEditingComplete: () {
                         final val = int.tryParse(_attackController.text) ?? 50;
-                        // Trava entre 50 e 1000
+                        // trava entre 50 e 1000
                         _attackController.text = val.clamp(50, 1000).toString();
-                        FocusScope.of(context).unfocus(); // Fecha o teclado
+                        FocusScope.of(context).unfocus(); 
                       },
                     ),
                   ),
@@ -198,14 +197,13 @@ class _CharacterFormViewState extends State<CharacterFormView> {
                         labelText: 'Vida (100-5000)',
                       ),
                       keyboardType: TextInputType.number,
-                      // Quando o usuário terminar de digitar:
                       onEditingComplete: () {
                         final val = int.tryParse(_healthController.text) ?? 100;
-                        // Trava entre 100 e 5000
+                        // trava entre 100 e 5000
                         _healthController.text = val
                             .clamp(100, 5000)
                             .toString();
-                        FocusScope.of(context).unfocus(); // Fecha o teclado
+                        FocusScope.of(context).unfocus();
                       },
                     ),
                   ),
