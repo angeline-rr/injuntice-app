@@ -41,8 +41,20 @@ class AppRadius {
 }
 
 // =============================================================================
-// TEXT STYLE EXTENSIONS
+// THEME EXTENSIONS
 // =============================================================================
+
+/// Extension para acessar facilmente as cores e propriedades do tema
+extension ThemeContext on BuildContext {
+  /// Acessa o ColorScheme atual (Material 3)
+  ColorScheme get colors => Theme.of(this).colorScheme;
+
+  /// Acessa o ThemeData completo
+  ThemeData get theme => Theme.of(this);
+
+  /// Verifica rapidamente se está no modo escuro
+  bool get isDarkMode => Theme.of(this).brightness == Brightness.dark;
+}
 
 /// Extension to add text style utilities to BuildContext
 /// Access via context.textStyles

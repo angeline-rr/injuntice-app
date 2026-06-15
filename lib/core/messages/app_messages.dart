@@ -29,4 +29,5 @@ class _Error {
   final String invalidPasswordError = 'Campo não pode ser vazio.';
   final String passwordMismatchError = 'As senhas não coincidem.';
   final String invalidPhoneError = 'Número de telefone inválido.';
+  final String invalidInput = 'Entrada inválida. Verifique os dados fornecidos.';
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:injustice_app/authentication/domain/models/auth_entities.dart';
 import '../failure/failure.dart';
 import '../../domain/models/account_entity.dart';
 import '../../domain/models/character_entity.dart';
@@ -9,6 +10,14 @@ typedef VoidResult = Result<void, Failure>;
 typedef AccountResult = Result<Account, Failure>;
 typedef CharacterResult = Result<Character,Failure>;
 typedef ListCharacterResult = Result<List<Character>, Failure>;
+
+//typedefs para autenticação
+typedef AuthSessionResult = Result<AuthSession, Failure>;
+
+/// tipos usados para modulo de autenticação
+typedef SignInParams = ({String email, String password});
+typedef SignUpParams =
+    ({String? name,String email, String password});
 
 // typedfs para parâmetros
 typedef AccountParams = ({Account account});
