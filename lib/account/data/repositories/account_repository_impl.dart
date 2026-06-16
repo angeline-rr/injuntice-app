@@ -11,7 +11,7 @@ import '../../domain/models/account_entity.dart';
 
 final class AccountRepositoryImpl implements IAccountRepository {
   final IAccountLocalStorage _localStorage;
-  final IAccountRemoteService _remoteService; // O novo serviço
+  final IAccountRemoteService _remoteService; 
 
   AccountRepositoryImpl({
     required IAccountLocalStorage localStorage,
@@ -23,11 +23,10 @@ final class AccountRepositoryImpl implements IAccountRepository {
   Future<VoidResult> saveAccount(Account account) async {
     final remoteResult = await _remoteService.saveAccount(account);
 
-    // Usando .fold() que você mesmo definiu no Result
     return remoteResult.fold(
       onSuccess: (ok) => _localStorage.saveAccount(account),
       onFailure: (failure) =>
-          Error(failure), // Retorna o objeto Error encapsulando a falha
+          Error(failure), 
     );
   }
 
@@ -38,9 +37,9 @@ final class AccountRepositoryImpl implements IAccountRepository {
     return result.fold(
       onSuccess: (account) {
         _localStorage.saveAccount(account);
-        return Success(account); // Instancia a classe Success
+        return Success(account);
       },
-      onFailure: (failure) => Error(failure), // Instancia a classe Error
+      onFailure: (failure) => Error(failure), 
     );
   }
 

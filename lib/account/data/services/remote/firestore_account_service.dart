@@ -51,7 +51,6 @@ class FirestoreAccountService implements IAccountRemoteService {
       final uid = FirebaseAuth.instance.currentUser?.uid;
       if (uid == null) return Error(DefaultFailure("Usuário não logado"));
 
-      // Deleta o documento da conta
       await _firestore.collection('accounts').doc(uid).delete();
 
       return Success(null);

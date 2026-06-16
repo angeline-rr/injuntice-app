@@ -69,13 +69,12 @@ final class CharacterRepositoryImpl implements ICharacterRepository {
   
   final uid = _auth.session.session.value?.user.id;
   
-  // VERIFICAÇÃO DE SEGURANÇA
   print("DEBUG FIREBASE: UID capturado: $uid");
   print("DEBUG FIREBASE: ID do Personagem: ${character.id}");
   
   if (uid != null) {
     final map = CharacterMapper.toMap(character);
-    print("DEBUG FIREBASE: Mapa enviado: $map"); // Veja se o 'userId' está aqui!
+    print("DEBUG FIREBASE: Mapa enviado: $map"); 
     
     await _firestore
         .collection('accounts')
