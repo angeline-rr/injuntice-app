@@ -2,6 +2,7 @@ import 'package:injustice_app/core/di/dependency_injection.dart';
 import 'package:injustice_app/core/routes/auth_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:injustice_app/core/routes/injustice_routes.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
 import '../../../core/theme/app_theme.dart';
@@ -156,8 +157,10 @@ class _LoginPageState extends State<LoginPage> {
                             } else {
                               if (context.mounted) {
                                 context.goNamed(
-                                  'home',
-                                ); 
+                                  AppRouteNames.home, 
+                                  extra:
+                                      auth,
+                                );
                               }
                             }
                           } catch (e) {
