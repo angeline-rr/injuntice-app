@@ -1,3 +1,4 @@
+import 'package:injustice_app/authentication/data/services/local/auth_local_session_manager.dart';
 import 'package:injustice_app/core/typedefs/types_defs.dart';
 import 'package:signals_flutter/signals_flutter.dart';
 
@@ -11,7 +12,7 @@ class AuthRepositoryImpl implements IAuthRepository {
   /// Serviço de autenticação subjacente
   final IAuthService _authService;
 
-  AuthRepositoryImpl(this._authService);
+  AuthRepositoryImpl(this._authService, AuthLocalSessionManager authLocalSessionManager);
 
   /// Retorna a sessão atual (ou null se não houver usuário logado)
   @override

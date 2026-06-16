@@ -154,7 +154,11 @@ class _LoginPageState extends State<LoginPage> {
                             if (auth == null) {
                               _showSnack('Falha ao autenticar usuário.');
                             } else {
-                              // context.goNamed(AppRouteNames.adventureHome);
+                              if (context.mounted) {
+                                context.goNamed(
+                                  'home',
+                                ); 
+                              }
                             }
                           } catch (e) {
                             _showSnack('Erro ao fazer login: $e');

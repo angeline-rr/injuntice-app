@@ -1,6 +1,7 @@
 import 'package:injustice_app/core/di/dependency_injection.dart';
 import 'package:injustice_app/core/routes/app_routes.dart';
 import 'package:injustice_app/core/routes/auth_routes.dart';
+import 'package:injustice_app/core/routes/injustice_routes.dart';
 import 'package:injustice_app/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -67,7 +68,7 @@ class _SignupPageState extends State<SignupPage> {
         _showSnack('Falha ao cadastrar usuário.');
       } else {
         // context.goNamed(AppRouteNames.adventureHome);
-        context.goNamed(GlobalRouteNames.underConstruction);
+        context.goNamed(AppRouteNames.accountCreate, extra: auth);
       }
     } catch (e) {
       _showSnack('Erro ao fazer login: $e');
